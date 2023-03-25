@@ -48,11 +48,14 @@
 ## test
 
 class Contact:
+
     def __init__(self, number, name):
         self.number = number
         self.name = name
 
+
 class Query:
+
     def __init__(self, query):
         self.type = query[0]
         self.number = int(query[1])
@@ -70,19 +73,27 @@ def write_responses(result):
 def process_queries(queries):
     result = []
     contacts = {}
+
     for query in queries:
+
         if query.type == 'add':
             contacts[query.number] = Contact(query.number, query.name)
         elif query.type == 'del':
+
             if query.number in contacts:
                 del contacts[query.number]
 
         else:
             if query.number in contacts:
                 result.append(contacts[query.number].name)
+
             else:
                 result.append('not found')
+
+
     return result
+
+    
 
 if __name__ == '__main__':
     write_responses(process_queries(read_queries()))
